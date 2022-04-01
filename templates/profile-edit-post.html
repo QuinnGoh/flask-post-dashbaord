@@ -1,0 +1,77 @@
+<!doctype html>
+<!--
+ Copyright 2021 Google LLC
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html style="padding-top: 0px !important;">
+<head>
+    <title>Post Edit</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body style="padding-top: 0px !important;">
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/dashboard">
+      <img
+        src="{{ url_for('static', filename='Logo.png') }}"
+        height=50%
+        width=50%
+        loading="lazy"
+      />
+    </a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+<body>
+
+
+<div class="container rounded bg-white mt-5 mb-5" style="margin-left:auto">
+
+    <div class="row">
+                <div class="card">
+                    <form class="row mt-3" method="post" enctype="multipart/form-data">
+                        <div class="col-md-12"><label class="labels">Subject</label><input type="text"
+                                                                                           class="form-control"
+                                                                                           name="subject"
+                                                                                           value="{{ subject }}">
+                        </div>
+                        <div class="col-md-12"><label class="labels">Message</label><textarea type="text"
+                                                                                              class="form-control"
+                                                                                              name="message"
+                                                                                              placeholder="{{ message }}"
+                                                                                              value="{{ message }}"></textarea>
+                        </div>
+                        <img src="{{blob_string}}" class="img-fluid" style="margin-top: 20px !important; margin-bottom: 10px !important;">
+                        <div class="col-md-12"><input type="file" name="file" value="{{ request.form.file }}" style="padding-top: 10px !important;" accept="image/*"></div>
+                        <hr>
+                        <button type="submit" name='submit_button' value="EditPost" class="btn btn-primary btn-block"
+                                style="margin-left: 12px !important; margin-right: 12px !important; margin-top: 20px !important;">
+                            Save Changes
+                        </button>
+                    </form>
+
+
+                </div>
+    </div>
+</div>
+
+
+</body>
+</html>

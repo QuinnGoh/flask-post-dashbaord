@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+<head>
+    <title>Register</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="global-container">
+
+
+    {% if errors.__contains__('ID') %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> That id already exists, please try again.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    {% endif %}
+    {% if errors.__contains__('Username') %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> That username already exists, please try again.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    {% endif %}
+
+
+
+    <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">Register</h3>
+            <div class="card-text">
+                <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+                <form method="post" enctype="multipart/form-data">
+                    <!-- to error: add class "has-danger" -->
+                    <div class="form-group">
+                        <label class="labels">User Name</label>
+                        <input type="text" name="username" class="form-control form-control-sm" value="">
+                        <label class="labels">ID</label>
+                        <input type="text" name="id" class="form-control form-control-sm" value="">
+                    </div>
+                    <div class="form-group">
+                        <label class="labels">Password</label>
+                        <input type="password" name="password" class="form-control form-control-sm"
+                               id="exampleInputPassword1" value="">
+                        <label class="labels">Upload Profile Picture</label><input type="file" name="file"
+                                                                                   required=""></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html style="padding-top: 0px !important;">
+<head>
+    <title>Forum</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker:400' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="padding-top: 0px !important;">
+<!-- Just an image -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/dashboard">
+            <img
+                    src="{{ url_for('static', filename='Logo.png') }}"
+                    height=50%
+                    width=50%
+                    loading="lazy"
+            />
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="d-flex p-2 px-3 justify-content-center" style="background: #EDAC59;">
+        <div class="d-flex flex-row align-items-center"><img src="{{ user_blob_string }}"
+                                                             width="50"
+                                                             class="rounded-circle">
+            <div class="d-flex flex-column ml-2"><span
+                   style="font-family: Permanent Marker, sans-serif;" class="font-weight-bold"><a style="color: #2C2C2C;" href="../profile">{{ user_name }}</a></span>
+            </div>
+        </div>
+
+    </div>
+
+
+<div class="container rounded bg-white mt-5 mb-5">
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="things">
+                <div class="content">
+                    <h1 style="font-family: Permanent Marker, sans-serif;">Check out the latest posts</h1>
+                </div>
+                <div class="content">
+                    <div class="arrow">
+                        <div class="curve"></div>
+                        <div class="point"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" style="height:800px; overflow-y: scroll;">
+            {% for post in posts %}
+                <div class="card" style="margin-bottom: 150px !important;">
+                    <div class="d-flex justify-content-between p-2 px-3">
+                        <div class="d-flex flex-row align-items-center"><img src="{{ post.user_blob_string }}"
+                                                                             width="50"
+                                                                             class="rounded-circle">
+                            <div class="d-flex flex-column ml-2"><span
+                                    class="font-weight-bold">{{ post.user_name }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row mt-1 ellipsis"><small class="mr-2">{{ post.dt }}</small> <i
+                                class="fa fa-ellipsis-h"></i></div>
+
+                    </div>
+                    <img src="{{ post.blob_string }}" class="img-fluid">
+                    <hr>
+                    <div class="p-2">
+                        <p style="font-weight: bold" class="text-justify">{{ post.subject }}</p>
+                        <hr>
+                        <p class="text-justify">{{ post.message }}</p>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="things">
+                <div class="content">
+                    <h1 style="font-family: Permanent Marker, sans-serif;">Make a new post</h1>
+                </div>
+                <div class="content">
+                    <div class="arrow">
+                        <div class="curve"></div>
+                        <div class="point"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <form class="row mt-3" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12"><label class="labels">Subject</label><input type="text" class="form-control"
+                                                                                       name="subject"
+                                                                                       placeholder="Subject"
+                                                                                       value="{{ request.form.subject }}"
+                                                                                       required></div>
+                    <div class="col-md-12"><label class="labels">Message</label><textarea type="text"
+                                                                                          class="form-control"
+                                                                                          name="message"
+                                                                                          placeholder="Type your message"
+                                                                                          value="{{ request.form.message }}"
+                                                                                          required></textarea></div>
+                    <div class="col-md-12"><label class="labels">Upload</label><input type="file" name="file"
+                                                                                      value="{{ request.form.file }}"
+                                                                                      required></div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary btn-block"
+                            style="margin-left: 12px !important; margin-right: 12px !important; margin-top: 20px !important;">
+                        Upload post
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
